@@ -1,0 +1,53 @@
+%SIGNAL
+PIN  19 =  AHIGH 
+PIN  18 =  ALOW 
+PIN  17 =  RA16 
+PIN   5 =  nCAS 
+PIN  16 =  nHCS 
+PIN  13 =  nHWE 
+PIN  15 =  nLCS 
+PIN  12 =  nLWE 
+PIN  14 =  nOE 
+PIN   4 =  nR1CE 
+PIN   3 =  nR2CE 
+PIN   1 =  nRAS 
+PIN   6 =  nRB1 
+PIN   7 =  nRB2 
+PIN   8 =  nRB3 
+PIN   9 =  nRB4 
+PIN   2 =  nWE 
+%END
+
+%FIELD
+%END
+
+%EQUATION
+AHIGH =>
+    !nRAS
+  # !nCAS
+
+ALOW =>
+    nCAS
+
+RA16 =>
+    !nRB1
+  # !nRB4
+
+nHCS =>
+    !nCAS & !nRB3
+  # !nCAS & !nRB4
+
+nHWE =>
+    !nCAS & !nR2CE & !nRAS & !nWE
+
+nLCS =>
+    !nCAS & !nRB1
+  # !nCAS & !nRB2
+
+nLWE =>
+    !nCAS & !nR1CE & !nRAS & !nWE
+
+nOE =>
+    !nCAS & nWE
+
+%END

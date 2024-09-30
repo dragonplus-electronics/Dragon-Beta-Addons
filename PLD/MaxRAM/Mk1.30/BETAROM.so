@@ -1,0 +1,78 @@
+CSIM(WM): CUPL Simulation Program
+Version 5.0a Serial# 
+Copyright (c) 1983, 1998 Logical Devices, Inc.
+CREATED Tue Jun 14 08:59:31 2022
+
+LISTING FOR SIMULATION FILE: BETAROM.si
+
+   1: Name     ;
+               ^
+[0025sa] Please note: inconsistent header information
+
+   2: PartNo   ;
+               ^
+[0025sa] Please note: inconsistent header information
+
+   3: Date     ;
+               ^
+[0025sa] Please note: inconsistent header information
+
+   4: Revision ;
+               ^
+[0025sa] Please note: inconsistent header information
+
+   5: Designer ;
+               ^
+[0025sa] Please note: inconsistent header information
+
+   6: Company  ;
+               ^
+[0025sa] Please note: inconsistent header information
+
+   7: Assembly ;
+               ^
+[0025sa] Please note: inconsistent header information
+
+   8: Location ;
+   9: 
+  10: 
+  11: ORDER: A14, A15, A16, A17, A18, A19, E, Q, RW, VMA, nCS, nOE, nWE; 
+  12: 
+  13: 
+
+======================
+      AAAAAA   Vnnn   
+      111111  RMCOW   
+      456789EQWASEE   
+======================
+0001: LLHHHHLLLHXXH
+0002: LLHHHHLHLHXXH
+0003: LLHHHHHHLHXXH
+0004: LLHHHHHLLHXXH
+0005: LLHHHHLLLHXXH
+0006: LLHHHHLHLHXXH
+0007: LLHHHHHHLHXXH
+0008: LLHHHHHLLHXXH
+0009: LLHHHHLLLHXXH
+0010: LLHHHHLHLHXXH
+0011: LLHHHHHHLHXXH
+0012: LLHHHHHLLHXXH
+0013: LLHHHHLLLHXXH
+0014: LLHHHHLHLHXXH
+0015: LLHHHHHHLHXXH
+0016: LLHHHHHLLHXXH
+0017: LLHHHHLLLHXXH
+0018: LLHHHHLHLHXXH
+0019: LLHHHHHHLHXXH
+0020: LLHHHHHLLHXXH
+0021: LLHHHHLLLHXXH
+0022: LLHHHHLHLHXXH
+0023: LLHHHHHHLHXXH
+0024: LLHHHHHLLHXXH
+0025: LLHHHHLLLHXXH
+0026: LLHHHHLHLHXXH
+0027: LLHHHHHHLHXXH
+0028: LLHHHHHLLHXXH
+0029: LLHHHHLLLHXXH
+0030: LLHHHHLHLHXXH
+0031: LLHHHHHHLHXXH

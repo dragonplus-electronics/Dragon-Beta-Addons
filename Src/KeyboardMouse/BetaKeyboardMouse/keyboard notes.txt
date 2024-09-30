@@ -1,0 +1,54 @@
+Keyboard notes
+
+* Keyboard polling routine
+*
+* PB2		1 = One or more input lines low
+* CB2	1)	Output load; low enables paralell load of the
+*			input shift registers.
+* 		2)	Positive edge clocks data into the output
+*			shift registers.
+* PB4	1)	data out, clocked by CB2.
+*		2)	positive edge clocks data out of the input
+*			shift register.
+*		3)	Caps lock indicator, a low on PB4, and a paralell
+*			load (CB2 low), turns the LED on.
+* PB5		data in, clocked by PB4.
+
+Connection		Schematic Net			PI pin name
+CB2				INPUT_LOAD				INPUT_LOAD
+PB2				ANY_KEY					ANY_KEY
+PB4				OUTPUT_CLOCK_DATA_IN	OCDI
+PB5				DATA_OUT				DATA_OUT
+
+:T.GetRGS
+	Program CB2 (ouput load) to auto clock, on DRB write.
+	Set data high, clock out 9 times.
+    
+	Set data low, and clock out again.
+	Program CB2 (ouput load) to not auto clock, and be high.
+
+	Set PB4 (OCDI, data out) high, sets input shifter to serial.
+
+	Read 'ANY_KEY' & 'DATA_IN' (PB) into b
+
+:T.GetR1
+	Clock CB2 (output_load) low then high.
+	Check ANY_KEY bit in b, branch to T.GetR4 if nothing
+
+:T.GetR2
+	Clock OCDI low then high.
+	Get keyboard data bit
+	Merge into read bits
+	Loop to T.GetR2 if more bits to do
+	
+	Check for conflicts, and set flag if found
+
+
+:T.GetR4
+	IF No key pressed, decrement reg counter?
+	Loop to T.GetR1 if more regs to do.
+	
+	Program CB2 (ouput load) to auto clock, on DRB write.
+	Set data low, clock out 9 times. : So ANY_KEY works for entire keyboard.
+    
+	Set CAPS LED.

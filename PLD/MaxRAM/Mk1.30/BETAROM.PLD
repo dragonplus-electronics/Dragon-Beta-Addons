@@ -1,0 +1,37 @@
+Name     Beta RAM ;
+PartNo   00 ;
+Date     24/03/2022 ;
+Revision 01 ;
+Designer Engineer ;
+Company  test ;
+Assembly None ;
+Location  ;
+Device   G16V8 ;
+
+/* *************** INPUT PINS *********************/
+PIN 1   = A14                     ; /* Upper address line 14           */ 
+PIN 2   = A16                     ; /* Upper address line 16           */ 
+PIN 3   = A17                     ; /* Upper address line 17           */ 
+PIN 4   = A18                     ; /* Upper address line 18           */ 
+PIN 5   = A19                     ; /* Upper address line 19           */ 
+PIN 6   = E                       ; /* E clock                         */ 
+PIN 7   = Q                       ; /* Q clock                         */ 
+PIN 8   = VMA                     ; /* Valid Memory Address            */ 
+PIN 9   = RW                      ; /* R/W                             */ 
+PIN 19  = A15                     ; /* Upper address line 15           */ 
+
+/* *************** OUTPUT PINS *********************/
+PIN 12  = nCS                  	; /* RAM/ROM chip select             */ 
+PIN 13  = nOE                     ; /* Output enable                   */ 
+PIN 17  = nWE                     ; /* Write enable                    */ 
+
+/* Generate Read and write strobes from clocks & R/W */
+nOE	= !(RW & E & VMA);
+nWE	= 'b'1;		// !(!RW & E & Q & VMA);
+
+
+/* RAM enabled between $40000 and $C0000 */
+ROMCS	= (A19 &  A18 & A17 & A16 & VMA & !A15); 
+
+
+nCS	= !ROMCS;

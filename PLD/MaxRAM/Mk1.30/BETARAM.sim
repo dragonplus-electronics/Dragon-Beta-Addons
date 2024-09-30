@@ -1,0 +1,33 @@
+%SIGNAL
+PIN   2 =  A16 
+PIN   3 =  A17 
+PIN   4 =  A18 
+PIN   5 =  A19 
+PIN   6 =  E 
+PIN   7 =  Q 
+PIN   9 =  RW 
+PIN   8 =  VMA 
+PIN  13 =  nOE 
+PIN  12 =  nRAMCS 
+PIN  17 =  nWE 
+%END
+
+%FIELD
+%END
+
+%EQUATION
+CS =>
+    A18 & !A19 & VMA
+  # !A18 & A19 & VMA
+
+nOE =>
+    E & RW & VMA
+
+nRAMCS =>
+    A18 & !A19 & VMA
+  # !A18 & A19 & VMA
+
+nWE =>
+    E & Q & !RW & VMA
+
+%END

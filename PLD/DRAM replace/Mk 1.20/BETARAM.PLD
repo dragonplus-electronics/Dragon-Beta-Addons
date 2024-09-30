@@ -1,0 +1,49 @@
+Name     BetaRAM ;
+PartNo   00 ;
+Date     03/04/2022 ;
+Revision 01 ;
+Designer Engineer ;
+Company  test ;
+Assembly None ;
+Location  ;
+Device   G16V8 ;
+
+/* *************** INPUT PINS *********************/
+PIN  1  = nRAS                    ; /* Row address strobe              */
+PIN  2  = nWE                     ; /* RAM Write enable                */
+PIN  3  = nR2CE                   ; /* 'high' ram to cpu buffer select A0=1     */
+PIN  4  = nR1CE                   ; /* 'low' ram to cpu buffer select A0=0      */
+PIN  5  = nCAS                    ; /* Column address strobe           */
+PIN  6  = nRB1                    ; /* RAM bank 1 strobe active low    */ 
+PIN  7  = nRB2                    ; /* RAM bank 2 strobe active low    */ 
+PIN  8  = nRB3                    ; /* RAM bank 3 strobe active low    */ 
+PIN  9  = nRB4                    ; /* RAM bank 4 strobe active low    */ 
+
+/* *************** OUTPUT PINS *********************/
+PIN  12 = nLWE                    ; /* 'low' RAM chip write enable, A=0  */
+PIN  13 = nHWE                    ; /* 'high' RAM chip write enable, A=1 */ 
+PIN  14 = nOE                	; /* RAM output enable                 */ 
+PIN  15 = nLCS                    ; /* 'low' RAM chip select, A=0      */ 
+PIN  16 = nHCS                    ; /* 'high' RAM chip select, A=1     */ 
+PIN  17 = RA16                    ; /* RAM address line 16             */ 
+PIN  18 = ALOW                    ; /* Low address bus latch RA[0..7]  */
+PIN  19 = AHIGH                   ; /* High address bus latch RA[8..15]*/ 
+
+/* Note banks are numbered as JohnW numbered them on the Beta schematic this gives */
+/* Even bytes		Odd bytes	range							 */
+/* bank2		bank3		$00000-$1FFFF						 */
+/* bank1		bank4		$20000-$3FFFF						 */
+
+nLWE 	= !(!nR1CE & !nWE & !nCAS & !nRAS);
+nHWE 	= !(!nR2CE & !nWE & !nCAS & !nRAS);
+
+nOE	= !(nWE & !nCAS);
+
+nLCS	= !((!nRB1 # !nRB2) & !nCAS);
+nHCS	= !((!nRB3 # !nRB4) & !nCAS);
+
+RA16	= (!nRB1 # !nRB4);
+
+/* latches are 74xx573, so are held whilst clock is low */
+ALOW	= nCAS;
+AHIGH	= !(!nRAS # !nCAS);
